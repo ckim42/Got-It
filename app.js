@@ -21,19 +21,30 @@ Entry.find()
   });
 
 // // DUMMY ENTRY
-let entries = [
-  { title: "01/01/2019", rating: "5/5"},
-  { title: "01/02/2019", rating: "4/5"}
-]
+// let entries = [
+//   { title: "01/01/2019", rating: "5/5"},
+//   { title: "01/02/2019", rating: "4/5"}
+// ]
 
 // // root route
 // app.get('/', (req, res) => {
 //   res.render('home', { msg: 'Handlebars are Cool!' });
 // })
 
-// Index/Read
+// root route
+// CHANGE LATER WE DO NOT WANT THIS TO BE THE DEFAULT IN THE END
 app.get('/', (req, res) => {
-  res.render('entries-index', { entries: entries });
+  res.redirect('/entries')
+})
+
+// Index/Read
+app.get('/entries', (req, res) => {
+  Entry.find().then(entries => {
+    res.render('entries-index', { entries: entries });
+  }).catch(err => {
+    console.log(err);
+  });
+
 })
 
 // Index/Read
@@ -61,6 +72,7 @@ app.post('/entries', (req, res) => {
   })
 })
 
+//BOOKMARK 65656565656565656565656565
 // Show
 app.get('/entries/:id', (req, res) => {
   Entry.findById(req.params.id).then((entry) => {
