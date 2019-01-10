@@ -1,0 +1,24 @@
+<form method="POST" action="/entries">
+  <fieldset>
+    <legend>New Entry</legend>
+    <!--Title-->
+    <p>
+      <label for="entry-title">Title</label><br>
+      <input id="entry-title" type="text" name="title" />
+    </p>
+    <p>
+      <label for="entry-rating">Rating</label><br>
+      <input id="entry-rating" type="text" name="rating" />
+    </p>
+    <!-- <p>
+      <label for="entry-tag">Tags</label><br>
+      <form action="/">
+      <input type="entry-text" name="tag" value="{{tag}}">
+      </form>
+    </p> -->
+  </fieldset>
+  <!--Button-->
+  <p>
+    <button type="submit">Save Entry</button>
+  </p>
+</form>
