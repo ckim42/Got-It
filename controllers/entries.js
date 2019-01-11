@@ -15,7 +15,7 @@ module.exports = function(app, entry) {
     Entry.find().then(entries => {
       res.render('entries-index', { entries: entries });
     }).catch(err => {
-      console.log(err);
+      console.log(err.message);
     });
   })
 
@@ -27,15 +27,19 @@ module.exports = function(app, entry) {
   // Post/Create
   app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
+      // following line: string parsing to array
+      parsedList = req.body.tagsString.split(", ")
+      // following line: entry.tags = now-parsed stuff
+      entry.tags = parsedList
       console.log(entry)
-      // res.redirect(`/entries/${entry._id}`)
+      entry.save()
       res.redirect('/');
     }).catch((err) => {
       console.log(err.message)
     })
   })
 
-  // Show
+  // Show/Read
   app.get('/entries/:id', (req, res) => {
     Entry.findById(req.params.id).then((entry) => {
       res.render('entries-show', { entry: entry })
@@ -62,7 +66,7 @@ module.exports = function(app, entry) {
       })
   })
 
-  // Delete
+  // Delete/Destroy
   app.delete('/entries/:id', function (req, res) {
     console.log("DELETE entry")
     Entry.findByIdAndRemove(req.params.id).then((entry) => {
@@ -71,6 +75,5 @@ module.exports = function(app, entry) {
       console.log(err.message);
     })
   })
-
 
 }

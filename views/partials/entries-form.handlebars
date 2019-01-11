@@ -1,8 +1,10 @@
 <fieldset>
+
   <legend>Edit Entry</legend>
+
   <!-- TITLE -->
   <p>
-    <label for="entry-title">Title</label><br>
+    <label for="entry-title">Date</label><br>
     <input id="entry-title" type="text" name="title" value="{{entry.title}}"/>
   </p>
 
@@ -11,4 +13,13 @@
     <label for="entry-rating">Rating</label><br>
     <input id="entry-rating" type="text" name="rating" value="{{entry.rating}}" />
   </p>
+
+  <!-- TAG(S) -->
+  <p>
+    <label for="entry-tags">Tags</label><br>
+    <!-- <form action="/"> -->
+    <input type="text" name="tagsString" value="{{tagsString}}">
+    <!-- </form> -->
+  </p>
+
 </fieldset>
