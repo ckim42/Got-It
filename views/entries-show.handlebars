@@ -2,3 +2,9 @@
 
 <h1>{{entry.title}}</h1>
 <h2>{{entry.rating}}</h2>
+
+<p><a href="/entries/{{entry._id}}/edit">Edit</a></p>
+
+<p><form method="POST" action="/entries/{{entry._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>
