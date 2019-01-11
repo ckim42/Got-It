@@ -1,0 +1,31 @@
+<form action="/entries/comments" method="post">
+  <!-- HIDDEN FIELD: reviewId -->
+  <input type="hidden" value="{{entry._id}}" name="entryId">
+  <fieldset>
+    <legend>Add a Comment</legend>
+    <!-- DATE -->
+    <div class="form-group">
+      <label form="comment-date">Date</label><br>
+      <input class="form-control"
+        id="comment-title"
+        type="text"
+        name="date"
+        placeholder="Date"/>
+    </div>
+
+    <!-- COMMENTARY -->
+    <div class="form-group">
+      <label for="comment-content">Commentary</label><br>
+      <textarea class="form-control"
+        id="comment-commentary"
+        name="commentary"
+        rows="10"
+        placeholder="Your commentary..."/></textarea>
+    </div>
+  </fieldset>
+
+  <!-- BUTTON -->
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Save Comment</button>
+  </div>
+</form>

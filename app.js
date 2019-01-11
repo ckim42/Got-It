@@ -15,10 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // models
 const Entry = require('./models/entry');
+const Comment = require('./models/comment');
 
 // controllers
 const entries = require('./controllers/entries');
 entries(app);
+const comments = require('./controllers/comments');
+comments(app);
 
 // check web server
 app.listen(3000, () => {

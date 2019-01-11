@@ -1,11 +1,28 @@
+<!-- <a href="/tag/{{this}}">{{this}}</a> -->
+
 <a href="/">Back to Home</a>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>Date: {{entry.title}}</h1>
+    <h2>Rating: {{entry.rating}}</h2>
+    <p>Tags: {{#each entry.tags}}
+      <a href="#">{{this}}</a>
+    {{/each}}
+    </p>
 
-<h1>Date: {{entry.title}}</h1>
-<h2>Rating: {{entry.rating}}</h2>
-<p>Tags: {{entry.tags}}</p>
+    <p><a href="/entries/{{entry._id}}/edit">Edit</a></p>
 
-<p><a href="/entries/{{entry._id}}/edit">Edit</a></p>
+    <p><form method="POST" action="/entries/{{entry._id}}?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form></p>
 
-<p><form method="POST" action="/entries/{{entry._id}}?_method=DELETE">
-    <button type="submit">Delete</button>
-</form></p>
+    <hr>
+    {{> comments-form}}
+    <hr>
+
+    {{#each comments}}
+      {{> comment}}
+    {{/each}}
+
+  </div>
+</div>
