@@ -1,4 +1,5 @@
 const Entry = require('../models/entry');
+const Comment = require('../models/comment');
 const express = require('express');
 const app = express();
 
@@ -41,11 +42,13 @@ module.exports = function(app, entry) {
 
   // Show/Read
   app.get('/entries/:id', (req, res) => {
-    Entry.findById(req.params.id).then((entry) => {
-      res.render('entries-show', { entry: entry })
+    Entry.findById(req.params.id).then(entry => {
+      Comment.find({ entryId: req.params.id }).then(comments => {
+        res.render('entries-show', { entry: entry, comments: comments })
+      })
     }).catch((err) => {
       console.log(err.message);
-    })
+    });
   });
 
   // Edit
