@@ -5,10 +5,9 @@ const app = express();
 
 module.exports = function(app, entry) {
 
-  // root route. redirects to /entries
-  // CHANGE LATER WE DO NOT WANT THIS TO BE THE DEFAULT IN THE END
+  // root route. redirects to home
   app.get('/', (req, res) => {
-    res.redirect('/entries')
+    res.render('home', {});
   })
 
   // Index/Read
