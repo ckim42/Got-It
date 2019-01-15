@@ -4,11 +4,6 @@ const app = express();
 
 module.exports = (app) => {
 
-  // NEW Comment
-  app.post('/entries/comments', (req, res) => {
-    res.send('comment!')
-  })
-
   // CREATE Comment
   app.post('/entries/comments', (req, res) => {
     Comment.create(req.body).then((comment) => {

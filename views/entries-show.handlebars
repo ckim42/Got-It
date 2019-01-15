@@ -7,7 +7,7 @@
     <h1>Date: {{entry.title}}</h1>
     <h2>Rating: {{entry.rating}}</h2>
     <p>Tags: {{#each entry.tags}}
-      <a href="#">{{this}}</a>
+      <a href="/tags/{{this}}">{{this}}</a>
     {{/each}}
     </p>
 
@@ -18,7 +18,7 @@
     </form></p>
 
     <hr>
-    
+
     {{> comments-form}}
 
     <hr>

@@ -1,9 +1,15 @@
-<form method="POST" action="/entries">
-  {{> entries-form}}
+<a href="/">Back to Home</a>
 
-  <!-- BUTTON -->
-  <p>
-    <button type="submit">Save Entry</button>
-  </p>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <form method="POST" action="/entries">
+      {{> entries-form}}
 
-</form>
+      <!-- BUTTON -->
+      <p>
+        <button type="submit">Save Entry</button>
+      </p>
+
+    </form>
+  </div>
+</div>

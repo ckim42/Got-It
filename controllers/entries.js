@@ -29,11 +29,12 @@ module.exports = function(app, entry) {
   app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
       // following line: string parsing to array
-      parsedList = req.body.tagsString.split(", ")
+      parsedList = req.body.tagsString.split(", ");
       // following line: entry.tags = now-parsed stuff
-      entry.tags = parsedList
-      console.log(entry)
-      entry.save()
+      entry.tags = parsedList;
+      console.log(entry);
+      // entry.title = new Date();
+      entry.save();
       res.redirect('/');
     }).catch((err) => {
       console.log(err.message)
@@ -50,6 +51,16 @@ module.exports = function(app, entry) {
       console.log(err.message);
     });
   });
+
+  // Index/Read - for all entries w/ same tag FROM entry
+  app.get('/tags/:tag', (req, res) => {
+    Entry.find({tags: {$all:[req.params.tag]}}).then(entries => {
+      console.log(entries)
+      res.render('entries-index', { entries: entries });
+    }).catch(err => {
+      console.log(err.message);
+    });
+  })
 
   // Edit
   app.get('/entries/:id/edit', (req, res) => {
@@ -78,5 +89,7 @@ module.exports = function(app, entry) {
       console.log(err.message);
     })
   })
+
+
 
 }
