@@ -6,6 +6,7 @@
     <a href="/entries/new">New Entry</a>
     <br>
     {{#each entries}}
+      <br>
       <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
       <p><b>Rating of productivity: </b>{{this.rating}}</p>
       <p><b>Tags: </b><i>{{this.tags}}</i></p>
