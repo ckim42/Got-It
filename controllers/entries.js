@@ -51,11 +51,20 @@ module.exports = function(app, entry) {
     });
   });
 
-  // Index/Read - for all entries w/ same tag
+  // Index/Read - for all entries w/ same TAG
   app.get('/tags/:tag', (req, res) => {
     Entry.find({tags: {$all:[req.params.tag]}}).then(entries => {
       console.log(entries)
       res.render('tagged-entries', { entries: entries , tag: req.params.tag});
+    }).catch(err => {
+      console.log(err.message);
+    });
+  })
+
+  // Index/Read - for all entries w/ same RATING
+  app.get('/ratings/:rating', (req, res) => {
+    Entry.find({rating: req.params.rating}).then(entries => {
+      res.render('rated-entries', { entries: entries, rating: req.params.rating});
     }).catch(err => {
       console.log(err.message);
     });

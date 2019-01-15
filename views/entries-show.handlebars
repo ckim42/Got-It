@@ -1,11 +1,13 @@
 <!-- <a href="/tag/{{this}}">{{this}}</a> -->
 
+<a href="/entries">Past Entries</a>
+
 <a href="/">Back to Home</a>
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <h1>Date: {{entry.title}}</h1>
-    <h2>Rating: {{entry.rating}}</h2>
+    <h2>Rating: <a href="/ratings/{{entry.rating}}">{{entry.rating}}</a></h2>
     <p>Tags: {{#each entry.tags}}
       <a href="/tags/{{this}}">{{this}}</a>
     {{/each}}
