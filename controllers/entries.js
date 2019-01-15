@@ -52,11 +52,11 @@ module.exports = function(app, entry) {
     });
   });
 
-  // Index/Read - for all entries w/ same tag FROM entry
+  // Index/Read - for all entries w/ same tag
   app.get('/tags/:tag', (req, res) => {
     Entry.find({tags: {$all:[req.params.tag]}}).then(entries => {
       console.log(entries)
-      res.render('entries-index', { entries: entries });
+      res.render('tagged-entries', { entries: entries , tag: req.params.tag});
     }).catch(err => {
       console.log(err.message);
     });
