@@ -1,10 +1,14 @@
 <a href="/">Back to Home</a>
 
-<h1>Entries</h1>
-
-<a href="/entries/new">New Entry</a>
-
-{{#each entries}}
-  <h2><a href="/entries/{{this._id}}">{{this.title}}</a></h2>
-  <h3>{{this.rating}}</h3>
-{{/each}}
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>Entries</h1>
+    <a href="/entries/new">New Entry</a>
+    <br>
+    {{#each entries}}
+      <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
+      <p><b>Rating of productivity: </b>{{this.rating}}</p>
+      <p><b>Tags: </b><i>{{this.tags}}</i></p>
+    {{/each}}
+  </div>
+</div>
