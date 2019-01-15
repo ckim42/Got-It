@@ -1,3 +1,4 @@
+<br>
 <a href="/">Back to Home</a>
 
 <div class="row">
@@ -5,10 +6,21 @@
     <h1>Entries tagged <b><i>"{{tag}}"</i></b></h1>
     <br>
     {{#each entries}}
-      <br>
-      <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
-      <p><b>Rating: </b>{{this.rating}}</p>
-      <p><b>Tags: </b><i>{{this.tags}} </i></p>
+      <div class="one-tagged-entry">
+        <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
+        <p><b>Rating: </b>{{this.rating}}</p>
+        <p><b>Tags: </b><i>{{this.tags}} </i></p>
+      </div>
     {{/each}}
   </div>
 </div>
+
+<style>
+  .one-tagged-entry {
+    border: 2px solid;
+    width: auto !important;
+    padding: 20px 15px;
+    border-radius: 2rem;
+    margin-top: 15px;
+  }
+</style>

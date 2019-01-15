@@ -1,13 +1,18 @@
+<br>
+<a href="/">Back to Home</a>
+
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <form method="POST" action="/entries/{{entry._id}}?_method=PUT">
+      <h2>Edit Entry</h2><hr>
       {{> entries-form}}
+
       <!-- BUTTON -->
       <p>
-        <button type="submit">Save Entry</button>
+        <button type="submit" class="btn btn-primary z-btn">Save Entry</button>
       </p>
 
-      <a href="/entries">Cancel</a>
+      <a onclick="goBack()">Cancel</a>
 
     </form>
   </div>

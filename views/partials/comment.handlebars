@@ -1,12 +1,24 @@
-<!-- views/partials/comment.handlebars -->
-
-<div class="card">
-  <div class="card-block">
-    <h4 class="card-date">{{this.date}}</h4>
-    <p class="card-text">{{this.commentary}}</p>
-    <!-- Delete link -->
-    <p><form method="POST" action="/entries/comments/{{this._id}}?_method=DELETE">
-      <button class="btn btn-link" type="submit">Delete</button>
-    </form></p>
-  </div>
+<div class="card border">
+  <span class="border">
+    <div class="card-block">
+      <h4 class="card-date">{{this.date}}</h4>
+      <p class="card-text text-muted">{{this.commentary}}</p>
+      <p>
+        <form method="POST" action="/entries/comments/{{this._id}}?_method=DELETE">
+          <button class="btn btn-danger btn-sm" type="submit">delete comment</button>
+        </form>
+      </p>
+    </div>
+  </span>
 </div>
+
+<style>
+  .card.border {
+    border: 1px solid;
+    width: auto !important;
+    padding: 20px 15px;
+    border-radius: 2rem;
+    /* border-width: thin; */
+    margin-top: 15px;
+  }
+</style>

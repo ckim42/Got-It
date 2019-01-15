@@ -1,33 +1,45 @@
+<br>
 <a href="/">Back to Home</a>
 <br>
 <br>
-<a href="/entries">Past Entries</a>
-
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <h1>Date: {{entry.title}}</h1>
-    <p><b>Rating: </b><a href="/ratings/{{entry.rating}}">{{entry.rating}}</a></p>
-    <p><b>Tags: </b> {{#each entry.tags}}
-      <a href="/tags/{{this}}"><i>{{this}}...</i></a><i> </i>
-    {{/each}}
-    </p>
+    <br>
+    <font size="+1">
+      <p><b>Rating: </b><a href="/ratings/{{entry.rating}}">{{entry.rating}}</a></p>
+      <p><b>Tags: </b> {{#each entry.tags}}
+          <a href="/tags/{{this}}"><i>{{this}}...</i></a><i> </i>
+        {{/each}}
+      </p>
 
-    <p><a href="/entries/{{entry._id}}/edit">Edit</a></p>
+      <p><a href="/entries/{{entry._id}}/edit">Edit</a></p>
+    </font>
 
-    <p><form method="POST" action="/entries/{{entry._id}}?_method=DELETE">
-        <button type="submit">Delete</button>
-    </form></p>
-
-    <hr>
-
-    {{> comments-form}}
+    <br>
 
     <hr>
-
+    <h2>comments</h2>
     {{#each comments}}
       {{> comment}}
     {{/each}}
 
+    {{> comments-form}}
+    <hr>
+
+    <p>
+      <a href="/entries"><button class="btn btn-primary c-btn">Back to All Entries</button></a>
+      <form method="POST" action="/entries/{{entry._id}}?_method=DELETE">
+        <button type="submit" class="btn btn-danger">Delete Entry</button>
+      </form>
+    </p>
+
   </div>
 </div>
+
+<style>
+  .c-btn {
+    margin-top: 15px;
+  }
+</style>

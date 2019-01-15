@@ -1,15 +1,29 @@
+<br>
 <a href="/">Back to Home</a>
 
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h1>Entries</h1>
-    <a href="/entries/new">New Entry</a>
-    <br>
-    {{#each entries}}
+  <span class="entry-border">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1>Entries</h1>
+      <a href="/entries/new">New Entry</a>
       <br>
-      <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
-      <p><b>Rating of productivity: </b>{{this.rating}}</p>
-      <p><b>Tags: </b><i>{{this.tags}}</i></p>
-    {{/each}}
-  </div>
+      {{#each entries}}
+        <div class="one-entry">
+          <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
+          <p><b>Rating of productivity: </b>{{this.rating}}</p>
+          <p><b>Tags: </b><i>{{this.tags}}</i></p>
+        </div>
+      {{/each}}
+    </div>
+  </span>
 </div>
+
+<style>
+  .one-entry {
+    border: 2px solid;
+    width: auto !important;
+    padding: 20px 15px;
+    border-radius: 2rem;
+    margin-top: 15px;
+  }
+</style>

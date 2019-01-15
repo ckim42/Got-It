@@ -1,31 +1,34 @@
 <form action="/entries/comments" method="post">
   <!-- HIDDEN FIELD: entryId -->
+  <br><hr>
   <input type="hidden" value="{{entry._id}}" name="entryId">
   <fieldset>
-    <legend>Add a Comment</legend>
+    <h4>add a comment</h4>
+    <br>
     <!-- DATE -->
     <div class="form-group">
-      <label form="comment-date">Date</label><br>
+      <label form="comment-date">date</label><br>
       <input class="form-control"
         id="comment-title"
         type="text"
         name="date"
-        placeholder="Date"/>
+        placeholder="today's date"/>
     </div>
 
     <!-- COMMENTARY -->
     <div class="form-group">
-      <label for="comment-content">Commentary</label><br>
+      <label for="comment-content">commentary</label><br>
       <textarea class="form-control"
         id="comment-commentary"
         name="commentary"
         rows="5"
-        placeholder="Your commentary..."/></textarea>
+        placeholder="your commentary...."/></textarea>
     </div>
   </fieldset>
 
   <!-- BUTTON -->
   <div class="form-group">
-    <button class="btn btn-primary" type="submit">Save Comment</button>
+    <button class="btn btn-primary btn-sm" type="submit">save comment</button>
   </div>
+  <br>
 </form>
