@@ -11,10 +11,6 @@ index.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 index.set('view engine', 'handlebars');
 index.use(bodyParser.urlencoded({ extended: true }));
 
-// models
-const Entry = require('./models/entry');
-const Comment = require('./models/comment');
-
 // controllers
 const entries = require('./controllers/entries');
 const comments = require('./controllers/comments');
@@ -31,4 +27,4 @@ index.listen(port, () => {
   console.log(`Running Got_It on port ${port}`);
 });
 
-module.exports = index;
+// module.exports = index;
