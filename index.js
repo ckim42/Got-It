@@ -1,14 +1,12 @@
 // init
 const express = require('express');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
 const index = express();
 
 // middleware
-index.use(methodOverride('_method'))
 index.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 index.set('view engine', 'handlebars');
 index.use(bodyParser.urlencoded({ extended: true }));
