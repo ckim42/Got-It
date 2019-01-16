@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
+
 const index = express();
 
 // middleware
@@ -22,13 +23,14 @@ const comments = require('./controllers/comments');
 entries(index);
 comments(index);
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000;
 // mongoose connection
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost.27017/got_it"; mongoose.connect(mongoUri, { useNewUrlParser: true } );
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/got-it";
+mongoose.connect(mongoUri, { useNewUrlParser: true } );
 
 // web server check
 index.listen(port, () => {
-  console.log('index listening on port 5000!')
+  console.log(`Running Got_It on port ${port}`);
 });
 
 module.exports = index;

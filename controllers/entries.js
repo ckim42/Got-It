@@ -1,9 +1,7 @@
 const Entry = require('../models/entry');
 const Comment = require('../models/comment');
-const express = require('express');
-const index = express();
 
-module.exports = function(index, entry) {
+module.exports = function(index) {
 
   // root route. redirects to home
   index.get('/', (req, res) => {
@@ -21,7 +19,7 @@ module.exports = function(index, entry) {
 
   // New/Create (1 new entry template)
   index.get('/entries/new', (req, res) => {
-    res.render('entries-new', {});
+    res.render('entries-new');
   })
 
   // Post/Create

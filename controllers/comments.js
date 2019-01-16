@@ -1,6 +1,4 @@
 const Comment = require('../models/comment');
-const express = require('express');
-const index = express();
 
 module.exports = (app) => {
 
