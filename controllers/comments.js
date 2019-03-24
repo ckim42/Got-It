@@ -1,4 +1,4 @@
-const Comment = require('../models/comment');
+const Comment = require('../models/comment')
 
 module.exports = (app) => {
 
@@ -6,20 +6,20 @@ module.exports = (app) => {
   app.post('/entries/comments', (req, res) => {
     Comment.create(req.body).then((comment) => {
       console.log(comment)
-      res.redirect(`/entries/${comment.entryId}`);
+      res.redirect(`/entries/${comment.entryId}`)
     }).catch((err) => {
-      console.log(err.message);
-    });
-  });
+      console.log(err.message)
+    })
+  })
 
   //DELETE
   app.delete('/entries/comments/:id', function (req, res) {
     console.log("DELETE comment")
     Comment.findByIdAndRemove(req.params.id).then((comment) => {
-      res.redirect(`/entries/${comment.entryId}`);
+      res.redirect(`/entries/${comment.entryId}`)
     }).catch((err) => {
-      console.log(err.message);
-    });
-  });
+      console.log(err.message)
+    })
+  })
 
 }

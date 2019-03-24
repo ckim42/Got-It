@@ -5,6 +5,6 @@ const Comment = mongoose.model('Comment', {
   date: String,
   commentary: String,
   entryId: { type: Schema.Types.ObjectId, ref: 'Entry' }
-});
+})
 
-module.exports = Comment;
+module.exports = Comment

@@ -6,11 +6,11 @@
     <h1>Entries tagged <b><i>"{{tag}}"</i></b></h1>
     <br>
     {{#each entries}}
-      <div class="one-tagged-entry">
-        <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
-        <p><b>Rating: </b>{{this.rating}}</p>
-        <p><b>Tags: </b><i>{{this.tags}} </i></p>
-      </div>
+    <div class="one-tagged-entry">
+      <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
+      <p><b>Rating: </b>{{this.rating}}</p>
+      <p><b>Tags: </b><i>{{this.tags}} </i></p>
+    </div>
     {{/each}}
   </div>
 </div>
