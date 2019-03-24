@@ -1,15 +1,15 @@
 const Entry = require('../models/entry')
 const Comment = require('../models/comment')
 
-module.exports = function (index) {
+module.exports = (app) => {
 
   // root route. redirects to home
-  index.get('/', (req, res) => {
+  app.get('/', (req, res) => {
     res.render('home', {})
   })
 
   // Index/Read
-  index.get('/entries', (req, res) => {
+  app.get('/entries', (req, res) => {
     Entry.find().then(entries => {
       res.render('entries-index', {
         entries: entries
@@ -20,28 +20,26 @@ module.exports = function (index) {
   })
 
   // New/Create (1 new entry template)
-  index.get('/entries/new', (req, res) => {
+  app.get('/entries/new', (req, res) => {
     res.render('entries-new')
   })
 
   // Post/Create
-  index.post('/entries', (req, res) => {
+  app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
-      // following line: string parsing to array
-      parsedList = req.body.tagsString.split(", ")
-      // following line: entry.tags = now-parsed stuff
-      entry.tags = parsedList
+      parsedList = req.body.tagsString.split(", ") //string parsing to an array
+      entry.tags = parsedList //entry.tags = now-parsed stuff
       console.log(entry)
       // entry.title = new Date();
       entry.save()
-      res.redirect('/')
+      res.redirect('/entries/' + entry._id)
     }).catch((err) => {
       console.log(err.message)
     })
   })
 
   // Show/Read
-  index.get('/entries/:id', (req, res) => {
+  app.get('/entries/:id', (req, res) => {
     Entry.findById(req.params.id).then(entry => {
       Comment.find({
         entryId: req.params.id
@@ -57,7 +55,7 @@ module.exports = function (index) {
   })
 
   // Index/Read - for all entries w/ same TAG
-  index.get('/tags/:tag', (req, res) => {
+  app.get('/tags/:tag', (req, res) => {
     Entry.find({
       tags: {
         $all: [req.params.tag]
@@ -74,7 +72,7 @@ module.exports = function (index) {
   })
 
   // Index/Read - for all entries w/ same RATING
-  index.get('/ratings/:rating', (req, res) => {
+  app.get('/ratings/:rating', (req, res) => {
     Entry.find({
       rating: req.params.rating
     }).then(entries => {
@@ -88,7 +86,7 @@ module.exports = function (index) {
   })
 
   // Edit
-  index.get('/entries/:id/edit', (req, res) => {
+  app.get('/entries/:id/edit', (req, res) => {
     Entry.findById(req.params.id, function (err, entry) {
       res.render('entries-edit', {
         entry: entry
@@ -97,7 +95,7 @@ module.exports = function (index) {
   })
 
   // Update
-  index.put('/entries/:id', (req, res) => {
+  app.put('/entries/:id', (req, res) => {
     Entry.findByIdAndUpdate(req.params.id, req.body)
       .then(entry => {
         res.redirect(`/entries/${entry._id}`)
@@ -108,7 +106,7 @@ module.exports = function (index) {
   })
 
   // Delete/Destroy
-  index.delete('/entries/:id', function (req, res) {
+  app.delete('/entries/:id', function (req, res) {
     console.log("DELETE entry")
     Entry.findByIdAndRemove(req.params.id).then((entry) => {
       res.redirect('/')
