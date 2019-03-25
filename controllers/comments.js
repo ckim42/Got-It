@@ -2,7 +2,7 @@ const Comment = require('../models/comment')
 
 module.exports = (app) => {
 
-  // CREATE Comment
+  // Create comment
   app.post('/entries/comments', (req, res) => {
     Comment.create(req.body).then((comment) => {
       console.log(comment)
@@ -12,8 +12,8 @@ module.exports = (app) => {
     })
   })
 
-  //DELETE
-  app.delete('/entries/comments/:id', function (req, res) {
+  // Delete
+  app.delete('/entries/comments/:id', (req, res) => {
     console.log("DELETE comment")
     Comment.findByIdAndRemove(req.params.id).then((comment) => {
       res.redirect(`/entries/${comment.entryId}`)

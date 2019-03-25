@@ -10,7 +10,8 @@
     <font size="+1">
       <p><b>Rating: </b><a href="/ratings/{{entry.rating}}">{{entry.rating}}</a></p>
       <p><b>Description: </b><p>{{entry.note}}</p>
-      <p><b>Tags: </b> {{#each entry.tags}}
+      <p><b>Tags: </b>
+        {{#each entry.tags}}
           <a href="/tags/{{this}}"><i>{{this}}...</i></a><i> </i>
         {{/each}}
       </p>

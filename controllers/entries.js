@@ -29,10 +29,10 @@ module.exports = (app) => {
     Entry.create(req.body).then((entry) => {
       parsedList = req.body.tagsString.split(", ") //string parsing to an array
       entry.tags = parsedList //entry.tags = now-parsed stuff
-      console.log(entry)
       // entry.title = new Date();
       entry.save()
-      res.redirect('/entries/' + entry._id)
+      res.redirect(`/entries/${entry._id}`)
+      // res.redirect('/entries/' + entry._id) //if you dislike grave accents for some reason
     }).catch((err) => {
       console.log(err.message)
     })
@@ -106,10 +106,10 @@ module.exports = (app) => {
   })
 
   // Delete/Destroy
-  app.delete('/entries/:id', function (req, res) {
+  app.delete('/entries/:id', (req, res) => {
     console.log("DELETE entry")
     Entry.findByIdAndRemove(req.params.id).then((entry) => {
-      res.redirect('/')
+      res.redirect('/entries')
     }).catch((err) => {
       console.log(err.message)
     })
