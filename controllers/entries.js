@@ -26,16 +26,16 @@ module.exports = (app) => {
     res.render('entries-new')
   })
 
+
   // Post/Create
   app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
       parsedList = req.body.tagsString.split(", ") //string parsing to an array
       entry.tags = parsedList //entry.tags = now-parsed stuff
-      if (parsedList.length > 0) { //poor JS ran out of memory when this was a while loop. Why? Because the while loop meant it was running forever
-        for (tag in parsedList) {
-          allTags.push(tag)
-        }
+      Array.prototype.extend = function (parsedList) { //thanks to users jcdude and Peter Mortensen https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
+        parsedList.forEach(function(v) {this.push(v)}, this)
       }
+      allTags.extend(parsedList)
       console.log(allTags)
       // entry.title = new Date();
       entry.save()
