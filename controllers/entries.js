@@ -3,6 +3,8 @@ const Comment = require('../models/comment')
 
 module.exports = (app) => {
 
+  const allTags = [] // this array will contain every single instance of every tag
+
   // root route. redirects to home
   app.get('/', (req, res) => {
     res.render('home', {})
@@ -15,7 +17,7 @@ module.exports = (app) => {
         entries: entries
       })
     }).catch(err => {
-      console.log(err.message);
+      console.log(err.message)
     })
   })
 
@@ -29,6 +31,12 @@ module.exports = (app) => {
     Entry.create(req.body).then((entry) => {
       parsedList = req.body.tagsString.split(", ") //string parsing to an array
       entry.tags = parsedList //entry.tags = now-parsed stuff
+      if (parsedList.length > 0) { //poor JS ran out of memory when this was a while loop. Why? Because the while loop meant it was running forever
+        for (tag in parsedList) {
+          allTags.push(tag)
+        }
+      }
+      console.log(allTags)
       // entry.title = new Date();
       entry.save()
       res.redirect(`/entries/${entry._id}`)
@@ -50,7 +58,7 @@ module.exports = (app) => {
         })
       })
     }).catch((err) => {
-      console.log(err.message);
+      console.log(err.message)
     })
   })
 
@@ -61,13 +69,12 @@ module.exports = (app) => {
         $all: [req.params.tag]
       }
     }).then(entries => {
-      console.log(entries)
       res.render('tagged-entries', {
         entries: entries,
         tag: req.params.tag
       })
     }).catch(err => {
-      console.log(err.message);
+      console.log(err.message)
     })
   })
 
