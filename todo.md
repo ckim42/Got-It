@@ -9,6 +9,7 @@
       - *tag1*, *tag2*, *tag3*
 1. Auth a la Reddit
 1. Navbar a la Reddit
+1. Deleting an entry should delete its tags from the allTags array
 
 # Time permitting
 1. Change auth to OAuth or passport
