@@ -3,17 +3,19 @@
 
 const Entry = require('../models/entry')
 const Comment = require('../models/comment')
-const allTags1 = [] // every instance of every tag for each rating
-const allTags2 = []
-const allTags3 = []
-const allTags4 = []
-const allTags5 = []
+
+// create maps, one map per rating, to hold (tag, # of entries with that tag) as (key, val) pair
+const map1 = []
+const map2 = []
+const map3 = []
+const map4 = []
+const map5 = []
 
 module.exports = (app) => {
 
-  Array.prototype.extend = function (someArray) { //thanks to users jcdude and Peter Mortensen https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
-    someArray.forEach(function (v) { this.push(v) }, this)
-  }
+  // Array.prototype.extend = function (someArray) { //thanks to users jcdude and Peter Mortensen https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
+  //   someArray.forEach(function (v) { this.push(v) }, this)
+  // }
 
   // root route. redirects to home
   app.get('/', (req, res) => {

@@ -1,5 +1,7 @@
+# Current
+* On rated-entries, a section of the most frequently used tags for that rating
+
 # Important
-1. On rated-entries, a section of the most frequently used tags for that rating
 1. On tagged-entries, a section of the average rating for that tag
 1. updatedAt, createdAt timestamps using the actual time/date a la Reddit/BigMood
 1. Tracking productivity day-by-day
