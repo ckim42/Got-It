@@ -1,21 +1,18 @@
 // try unshift, not push
-// does it work, having allTags1-5 outside of module.exports?
+// does it work, having maps1-5 outside of module.exports?
 
 const Entry = require('../models/entry')
 const Comment = require('../models/comment')
 
 // create maps, one map per rating, to hold (tag, # of entries with that tag) as (key, val) pair
-const map1 = []
-const map2 = []
-const map3 = []
-const map4 = []
-const map5 = []
+// I believe these should be global??
+const map1 = new Map()
+// const map2 = new Map()
+// const map3 = new Map()
+// const map4 = new Map()
+// const map5 = new Map()
 
 module.exports = (app) => {
-
-  // Array.prototype.extend = function (someArray) { //thanks to users jcdude and Peter Mortensen https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
-  //   someArray.forEach(function (v) { this.push(v) }, this)
-  // }
 
   // root route. redirects to home
   app.get('/', (req, res) => {
@@ -38,21 +35,30 @@ module.exports = (app) => {
     res.render('entries-new')
   })
 
-  // Post/Create
+  // Post/Create (actually generate the thing)
   app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
       parsedList = req.body.tagsString.split(", ") //string parsing to an array
-      entry.tags = parsedList //entry.tags = now-parsed stuff
+      entry.tags = parsedList //updates entry.tags to = now-parsed stuff
       if (req.body.rating == 1) {
-        allTags1.extend(parsedList)
-      } else if (req.body.rating == 2) {
-        allTags2.extend(parsedList)
-      } else if (req.body.rating == 3) {
-        allTags3.extend(parsedList)
-      } else if (req.body.rating == 4) {
-        allTags4.extend(parsedList)
-      } else if (req.body.rating == 5) {
-        allTags5.extend(parsedList)
+        for (const tag of parsedList) {
+          if (map1.has(tag) == false) { //tag is not yet in map1 - add it!
+            map1.set(tag, 1)
+            console.log(map1)
+          }
+          else if (map1.has(tag) == true) { //tag IS in map1 - add 1 to the value
+            map1.set(tag, (map1.get(tag))+1)
+            console.log(map1)
+          }
+        }
+      // } else if (req.body.rating == 2) {
+      //   allTags2.extend(parsedList)
+      // } else if (req.body.rating == 3) {
+      //   allTags3.extend(parsedList)
+      // } else if (req.body.rating == 4) {
+      //   allTags4.extend(parsedList)
+      // } else if (req.body.rating == 5) {
+      //   allTags5.extend(parsedList)
       } else {
         console.log(err)
       }

@@ -20,3 +20,9 @@
 # Would be MAJOR CHANGES so ONLY do if time REALLY permits
 1. Edit comments
 1. Switch from handlebars to something else (maybe. *maybemaybemaybemaybe*)
+
+---
+
+# Old Stuff - not using
+
+* https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
