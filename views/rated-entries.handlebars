@@ -1,5 +1,60 @@
+{{!-- Have not yet tested the function, nor implemented its return into the frontend --}}
+
 <br>
 <a href="/">Back to Home</a>
+
+{{!-- There's surely a better place to put this.... --}}
+{{!-- ❗️pass in MANY ENTRIES -- this fxn should CREATE ARRAYS based on entry TAGS --}}
+<script>
+  //Gotta pass in an object
+  function returnStuff(entries) {
+    allTags = {} //object/"array" for ALL tags of ALL entries
+    display5 = {} //object/"array" for top 5 tags of this rating
+
+    //get object size https://stackoverflow.com/questions/5223/length-of-a-javascript-object
+    Object.size = function(obj) {
+      var size = 0, key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size ++;
+      } return size;
+    }
+
+    //Create array for ALL tags EVER
+    for (const entry_object in entries) {
+      const tags_attribute = entry_object['tags']
+      for (const tag in tags_attribute) {
+        if (tag in allTags) {
+          allTags[tag] += 1
+        } else {
+          allTags[tag] = 1
+        }
+      }
+    }.catch(err => {console.log(err.message)})
+
+    for (key, value in allTags) {
+      if (Object.size(display5) == 5) {
+        keys = Object.keys(display5) //create array of keys
+        display5 = keys.sort(function(a, b) { return display5[a] - display5[b] }) //sort ascending
+        for (key2, value2 in display5) {
+          i = 0
+          while (i < 6) { //or, while (i < (Object.size(display5) + 1))
+            if (value > value2) {
+              delete display5[0] //delete first element of sorted array
+              display5[key] = value //and plop this in
+              i += 1 //increase counter so as to iterate thru display5
+            }
+          }
+        }
+      } else if ((Object.size(display5) < 5) { //does this include when it's empty?? I think yes
+        for (key2, value2 in display5) {
+          display5[key] = value
+        }
+      }
+    }.catch(err => {console.log(err.message)})
+    
+    return display5
+  }
+</script>
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
