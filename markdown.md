@@ -18,11 +18,7 @@
 ### Backlog
 1. On tagged-entries, a section of the average rating for that tag
 1. updatedAt, createdAt timestamps using the actual time/date a la Reddit/BigMood
-1. Tracking productivity day-by-day
-  - Clickable points where you can click to the entry
-    - Or even a small pop-up
-      - RATING: 5
-      - *tag1*, *tag2*, *tag3*
+1. Tracking productivity day-by-day - clickable points where you can click to the entry (or get a small pop-up) and see RATING & TAGS (**omg data visualization??** 😱)
 1. Auth a la Reddit
 1. Navbar a la Reddit
 1. Deleting an entry should delete its tags from the allTags array
