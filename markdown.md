@@ -4,6 +4,7 @@
 * https://stackoverflow.com/questions/4968406/javascript-property-access-dot-notation-vs-brackets
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 * https://www.w3schools.com/jsref/jsref_unshift.asp
+* https://stackoverflow.com/questions/29820791/git-ignore-node-modules-folder-everywhere
 
 ---
 
