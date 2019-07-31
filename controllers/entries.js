@@ -1,5 +1,6 @@
 const Entry = require('../models/entry')
 const Comment = require('../models/comment')
+const Tag = require('../models/tag')
 
 module.exports = (app) => {
 
@@ -25,15 +26,25 @@ module.exports = (app) => {
   })
 
   // Post/Create (actually generate the thing)
-  //❌DON'T DO ANYTHING ELSE HERE! LEAVE IT ALONE! NO MORE!!!
   app.post('/entries', (req, res) => {
     Entry.create(req.body).then((entry) => {
       parsedList = req.body.tagsString.split(", ") //parses string to an array
       entry.tags = parsedList //updates entry.tags to = now-parsed stuff
-      // entry.title = new Date();
       entry.save()
+      for (eachTag in parsedList) {
+        //Check for existing Tag model whose tagName = eachTag
+        if ((Tag.exists({tagName: eachTag})) == true) { //it exists
+          Tag.find({tagName: eachTag}).then(tag => {
+            //pseudo: Update foundTag.timesUsed so timesUsed += 1
+            //pseudo: Append createdEntry's rating to foundTag.allRatings
+            //pseudo: Recalculate foundTag.avgRating ([ratings sum]/[length of foundTag.allRatings])
+          })
+        } else { //it does not exist
+
+        }
+      }
+
       res.redirect(`/entries/${entry._id}`)
-      // res.redirect('/entries/' + entry._id) //if you dislike grave accents for some reason
     }).catch((err) => {
       console.log(err.message)
     })
