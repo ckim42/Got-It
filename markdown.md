@@ -1,4 +1,22 @@
 # 📚 Resources:
+
+### ⁉️ Updating Documents
+* https://mongoosejs.com/docs/documents.html#updating
+* https://stackoverflow.com/questions/18349650/how-to-use-documentupdate-in-mongoose
+* https://stackoverflow.com/questions/40466323/mongoose-model-update-only-update-provided-values
+* https://stackoverflow.com/questions/30398698/how-to-access-model-attribute-in-jquery
+* https://www.digitalocean.com/community/tutorials/how-to-modify-attributes-classes-and-styles-in-the-dom
+* https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/
+
+### ⁉️ Populating
+* https://medium.com/@nicknauert/mongooses-model-populate-b844ae6d1ee7
+* https://mongoosejs.com/docs/populate.html
+
+### ⁉️ Lol
+* https://medium.com/omarelgabrys-blog/database-modeling-entity-relationship-diagram-part-5-352c5a8859e5
+* https://coursework.vschool.io/mongoose-schemas/
+
+### Unorganized stuff (organize later pls)
 * https://medium.com/front-end-weekly/es6-map-vs-object-what-and-when-b80621932373
 * https://zellwk.com/blog/looping-through-js-objects/
 * https://stackoverflow.com/questions/4968406/javascript-property-access-dot-notation-vs-brackets
@@ -11,10 +29,8 @@
 # ❤️ Current
 
 ### Left off here
-* On rated-entries, a section of the most frequently used tags for that rating
-  * Test the function I put in ```rated-entries.handlebars```
-  * Once tested - put it somewhere else maybe? Like make something called ```helpers.js```???
-  * Incorporate the now-tested stuff into the actual ```rated-entries.handlebars``` page!!!
+* Tag Schema - how do I update individual attributes of a Document??
+  * This is the better, more authentically backend-y way of solving this issue lmao
 
 ### Backlog
 1. On tagged-entries, a section of the average rating for that tag
