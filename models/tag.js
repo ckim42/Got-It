@@ -3,9 +3,8 @@ const Schema = mongoose.Schema
 
 const TagSchema = new Schema({
     tagName: { type: String, required: true },
-    timesUsed: { type: Number, required: true },
-    allRatings: [{ type: Number }], //array of all ratings, ever
-    avgRating: { type: Number }
+    tagRating: { type: Number, required: true },
+    entryId: { type: Schema.Types.ObjectId, ref: 'Entry'}
 })
 
 module.exports = mongoose.model('Tag', TagSchema)

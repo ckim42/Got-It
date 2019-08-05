@@ -77,3 +77,98 @@
       }
 ```
 *       // entry.title = new Date();
+* Aaand not using this (originally shoved into ```rated-entries.handlebars```):
+```
+<script>
+  //Gotta pass in an object
+  function returnStuff(entries) {
+    allTags = {} //object/"array" for ALL tags of ALL entries
+    display5 = {} //object/"array" for top 5 tags of this rating
+
+    //get object size https://stackoverflow.com/questions/5223/length-of-a-javascript-object
+    Object.size = function(obj) {
+      var size = 0, key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size ++;
+      } return size;
+    }
+
+    //Create array for ALL tags EVER
+    for (const entry_object in entries) {
+      const tags_attribute = entry_object['tags']
+      for (const tag in tags_attribute) {
+        if (tag in allTags) {
+          allTags[tag] += 1
+        } else {
+          allTags[tag] = 1
+        }
+      }
+    }.catch(err => {console.log(err.message)})
+
+    for (key, value in allTags) {
+      if (Object.size(display5) == 5) {
+        keys = Object.keys(display5) //create array of keys
+        display5 = keys.sort(function(a, b) { return display5[a] - display5[b] }) //sort ascending
+        for (key2, value2 in display5) {
+          i = 0
+          while (i < 6) { //or, while (i < (Object.size(display5) + 1))
+            if (value > value2) {
+              delete display5[0] //delete first element of sorted array
+              display5[key] = value //and plop this in
+              i += 1 //increase counter so as to iterate thru display5
+            }
+          }
+        }
+      } else if ((Object.size(display5) < 5) { //does this include when it's empty?? I think yes
+        for (key2, value2 in display5) {
+          display5[key] = value
+        }
+      }
+    }.catch(err => {console.log(err.message)})
+    
+    return display5
+  }
+</script>
+```
+* Not using this anymore either:
+```
+  // Post/Create (actually generate the entry)
+  app.post('/entries', (req, res) => {
+    // console.log(req.body)
+    Entry.create(req.body).then((entry) => { //⁉️ASYNC HERE ASYNC HERE!
+      // console.log(entry)
+      parsedList = req.body.tagsString.split(", ") //parses string to an array
+      entry.tags = parsedList //updates entry.tags to = now-parsed stuff
+      // console.log(entry)
+      entry.save()
+
+      // for (const eachTag of entry.tags) {
+      //   const findTag = await Tag.find({ tagName: eachTag }).limit(1)
+      //   console.log(typeof findTag)
+      //   console.log(findTag.length)
+
+      //   //Check for existing Tag model whose tagName = eachTag
+      //   console.log('before')
+      //   //find, then .catch!!!!
+      //   Tag.find({tagName: eachTag}).then(tag => {
+      //     console.log(tag)
+      //   }).catch() //catch - could not find, doesn't exist, let's make a new Tag document
+
+        // if ((Tag.exists({tagName: eachTag})) == true) { //it exists
+        //   console.log(eachTag)
+        //   Tag.find({tagName: eachTag}).then(tag => {
+        //     //pseudo: Update foundTag.timesUsed so timesUsed += 1
+        //     //pseudo: Append createdEntry's rating to foundTag.allRatings
+        //     //pseudo: Recalculate foundTag.avgRating ([ratings sum]/[length of foundTag.allRatings])
+        //   })
+        // } else { //it does not exist
+
+        // }
+      // }
+
+      res.redirect(`/entries/${entry._id}`)
+    }).catch((err) => {
+      console.log(err.message)
+    })
+  })
+```

@@ -6,7 +6,7 @@ const EntrySchema = new Schema({
   title: { type: String, required: true },
   rating: { type: Number, required: true },
   note: { type: String, required: false }, //aka description
-  tags: [{ type: Schema.Types.ObjectId, ref: 'Tag', required: true }],
+  tagsString: [{ type: String, required: true }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }] //gonna remove this
 })
 

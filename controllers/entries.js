@@ -25,25 +25,15 @@ module.exports = (app) => {
     res.render('entries-new')
   })
 
-  // Post/Create (actually generate the thing)
+  // Post/Create (actually generate the entry)
   app.post('/entries', (req, res) => {
+    // console.log(req.body)
     Entry.create(req.body).then((entry) => {
+      // console.log(entry)
       parsedList = req.body.tagsString.split(", ") //parses string to an array
-      entry.tags = parsedList //updates entry.tags to = now-parsed stuff
+      entry.tagsString = parsedList //updates entry.tags to = now-parsed stuff
+      console.log(entry)
       entry.save()
-      for (eachTag in parsedList) {
-        //Check for existing Tag model whose tagName = eachTag
-        if ((Tag.exists({tagName: eachTag})) == true) { //it exists
-          Tag.find({tagName: eachTag}).then(tag => {
-            //pseudo: Update foundTag.timesUsed so timesUsed += 1
-            //pseudo: Append createdEntry's rating to foundTag.allRatings
-            //pseudo: Recalculate foundTag.avgRating ([ratings sum]/[length of foundTag.allRatings])
-          })
-        } else { //it does not exist
-
-        }
-      }
-
       res.redirect(`/entries/${entry._id}`)
     }).catch((err) => {
       console.log(err.message)
