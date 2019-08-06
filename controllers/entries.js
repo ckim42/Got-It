@@ -62,19 +62,29 @@ module.exports = (app) => {
   })
 
   // Index/Read - for all entries w/ same TAG
+  // app.get('/tags/:tag', (req, res) => {
+  //   Entry.find({
+  //     tags: {
+  //       $all: [req.params.tag]
+  //     }
+  //   }).then(entries => {
+  //     console.log(entries)
+  //     res.render('tagged-entries', {
+  //       entries: entries,
+  //       tag: req.params.tag
+  //     })
+  //   }).catch(err => {
+  //     console.log(err.message)
+  //   })
+  // })
+  
   app.get('/tags/:tag', (req, res) => {
-    Entry.find({
-      tags: {
-        $all: [req.params.tag]
-      }
-    }).then(entries => {
-      res.render('tagged-entries', {
-        entries: entries,
-        tag: req.params.tag
-      })
+    Entry.find({ tagsString: { $all: [req.params.tag] } }).then(entries => {
+      console.log(entries)
+      res.render('tagged-entries', { entries: entries, tag: req.params.tag });
     }).catch(err => {
-      console.log(err.message)
-    })
+      console.log(err.message);
+    });
   })
 
   // Index/Read - for all entries w/ same RATING
