@@ -30,10 +30,15 @@ module.exports = (app) => {
     // console.log(req.body)
     Entry.create(req.body).then((entry) => {
       // console.log(entry)
+      const entryRating = entry.rating //pass in when making Tag documents
+      const entryId = entry._id //pass in when making Tag documents
       parsedList = req.body.tagsString.split(", ") //parses string to an array
       entry.tagsString = parsedList //updates entry.tags to = now-parsed stuff
       console.log(entry)
       entry.save()
+      for (const tag of parsedList) { //iterate thru array
+        Tag.create({ tagName: tag, tagRating: entryRating, entryId: entryId })
+      }
       res.redirect(`/entries/${entry._id}`)
     }).catch((err) => {
       console.log(err.message)
