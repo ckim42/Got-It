@@ -3,13 +3,14 @@
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
+    <h1>{{average}}</h1>
     <h1>Entries tagged <b><i>"{{tag}}"</i></b></h1>
     <br>
     {{#each entries}}
     <div class="one-tagged-entry">
       <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
       <p><b>Rating: </b>{{this.rating}}</p>
-      <p><b>Tags: </b><i>{{this.tags}} </i></p>
+      <p><b>Tags: </b><i>{{this.tagsString}} </i></p>
     </div>
     {{/each}}
   </div>
