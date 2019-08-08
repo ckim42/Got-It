@@ -24,18 +24,15 @@ module.exports = (app) => {
   app.get('/entries/new', (req, res) => {
     res.render('entries-new')
   })
-
+ 
   // Post/Create (actually generate the entry)
   // ❌ DON'T TOUCH THIS IT'S WORKING AS IS
   app.post('/entries', (req, res) => {
-    // console.log(req.body)
     Entry.create(req.body).then((entry) => {
-      // console.log(entry)
       const entryRating = entry.rating //pass in when making Tag documents
       const entryId = entry._id //pass in when making Tag documents
       parsedList = req.body.tagsString.split(", ") //parses string to an array
       entry.tagsString = parsedList //updates entry.tags to = now-parsed stuff
-      console.log(entry)
       entry.save()
       for (const tag of parsedList) { //iterate thru array
         Tag.create({ tagName: tag, tagRating: entryRating, entryId: entryId })
@@ -62,14 +59,13 @@ module.exports = (app) => {
     })
   })
 
-  // Working on weird new stuff
   // Index/Read - for all entries w/ same TAG
   app.get('/tags/:tag', (req, res) => {
     Entry.find({ tagsString: { $all: [req.params.tag] } })
-      .then(async entries => {
-        const tagHunt = await Tag.find({ tagName: req.params.tag }).then(tags => {
+      .then(async entries => { //staggered stuff not all at once = async
+        const tagHunt = await Tag.find({ tagName: req.params.tag }).then(tags => { //await the thing we need to continue
           let addedRatings = 0 //this number isn't fixed
-          let averageRating = 0
+          let averageRating = 0 //ditto
           const numEntries = tags.length //this number IS fixed
           for (const tag of tags) {
             addedRatings += tag.tagRating
@@ -77,30 +73,11 @@ module.exports = (app) => {
           averageRating = addedRatings / numEntries
           return averageRating
         })
-      res.render('tagged-entries', { entries: entries, tag: req.params.tag, average: tagHunt }); //put a variable in .hb file called tagHunt
+      res.render('tagged-entries', { entries: entries, tag: req.params.tag, average: tagHunt });
       console.log(tagHunt)
     }).catch(err => {
       console.log(err.message);
-    });
-  })
-
-
-
-
-  // Before all the weird new stuff
-  // Index/Read - for all entries w/ same TAG
-  app.get('/tags/:tag', (req, res) => {
-    Entry.find({ tagsString: { $all: [req.params.tag] } }).then(entries => {
-      // console.log(entries)
-      let addedRatings = 0 //this number isn't fixed
-      const numEntries = entries.length //this number IS fixed
-      for (const entry in entries) {
-
-      }
-      res.render('tagged-entries', { entries: entries, tag: req.params.tag });
-    }).catch(err => {
-      console.log(err.message);
-    });
+    })
   })
 
   // Index/Read - for all entries w/ same RATING
