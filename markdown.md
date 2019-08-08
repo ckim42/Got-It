@@ -1,5 +1,8 @@
 # 📚 Resources:
 
+### 🤩 Sorting a Dictionary/Object Based on Value
+* https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
+
 ### ⁉️ Updating Documents
 * https://mongoosejs.com/docs/documents.html#updating
 * https://stackoverflow.com/questions/18349650/how-to-use-documentupdate-in-mongoose
@@ -37,6 +40,8 @@
 1. updatedAt, createdAt timestamps using the actual time/date a la Reddit/BigMood
 1. Tracking productivity day-by-day - clickable points where you can click to the entry (or get a small pop-up) and see RATING & TAGS (**omg data visualization??** 😱) -- There's that book!!!!
 1. Navbar a la Reddit
+1. Cut comments
+1. Change ```tagsString``` to ```tagsArray``` (PUSH LIVE FIRST, THEN TRY TO FIX THIS, AND IF IT WORKS, THEN PUSH THAT WORKING FIX. THIS IS THE LAST PRIORITY. LAST! **LAST** PRIORITY!!!! I MEAN IT)
 
 ### Time permitting
 1. Change auth to OAuth or passport

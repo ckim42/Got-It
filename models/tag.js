@@ -7,4 +7,4 @@ const TagSchema = new Schema({
     entryId: { type: Schema.Types.ObjectId, ref: 'Entry'}
 })
 
-module.exports = mongoose.model('Tag', TagSchema) 
+module.exports = mongoose.model('Tag', TagSchema)
