@@ -32,11 +32,10 @@
 # ❤️ Current
 
 ### Left off here
-* On rated-entries, a section of the top 3 (or 5?) used tags for that rating
+* Delete an entry --> delete its associated Tag documents & its Rating document
 
 ### Backlog
 1. Auth a la Reddit
-1. Delete an entry --> delete its tags
 1. updatedAt, createdAt timestamps using the actual time/date a la Reddit/BigMood
 1. Tracking productivity day-by-day - clickable points where you can click to the entry (or get a small pop-up) and see RATING & TAGS (**omg data visualization??** 😱) -- There's that book!!!!
 1. Navbar a la Reddit
