@@ -80,31 +80,47 @@ module.exports = (app) => {
   // 😁 super similar to the above, yo!!!
   // Index/Read - for all entries w/ same RATING
   app.get('/ratings/:rating', (req, res) => {
+    let allTags = [] //GOOD!
+    let tagsDict = {}
+    // let topTags = []
     Entry.find({ rating: req.params.rating })
       .then(async entries => {
-        const ratingHunt = await Rating.find({ ratingNum: req.params.rating  }).then(ratings => {
-          let allTags = []
-          let tagsDict = {}
-          // let topTags = []
-          for (const rating of ratings) {
-            for (const tag of rating.tagsUsed) {
-              allTags.push(tag)
-              for (const thing of allTags) {
-                if (thing in tagsDict) {
-                  tagsDict[thing] += 1 //no dot notation :( cuz it's a var
-                } else {
-                  tagsDict[thing] = 1
-                }
-              }
-            }
-          }
-          // for (const tag of allTags) {
-          //   if (tag in tagsDict) {
-          //     tagsDict[tag] += 1
-          //   } else {
-          //     tagsDict[tag] = 1
+        const ratingHunt = await Rating.find({ratingNum: req.params.rating}).then(ratings => {
+          // for (const rating of ratings) {
+          //   for (const tag of rating.tagsUsed) {
+          //     allTags.push(tag)
+          //     console.log(allTags)
+          //     for (const thing of allTags) {
+          //       if (thing in tagsDict) {
+          //         tagsDict[thing] += 1 //no dot notation :( cuz it's a var
+          //       } else {
+          //         tagsDict[thing] = 1
+          //       }
+          //     }
           //   }
           // }
+
+          for (const rating of ratings) { //GOOD!
+            for (const tag of rating.tagsUsed) {
+              allTags.push(tag)
+            }
+          }
+
+          for (const thing of allTags) {
+            if (thing in tagsDict) {
+              tagsDict[thing] += 1
+            } else {
+              tagsDict[thing] = 1
+            }
+          }
+          // for (const thing of allTags) {
+          //   if (thing in tagsDict) {
+          //     tagsDict[thing] += 1 //no dot notation b/c 'thing' is a var
+          //   } else {
+          //     tagsDict[thing] = 1
+          //   }
+          // }
+          console.log('allTags' + allTags)
           return tagsDict
           // var standIn = Object.keys(tagsDict).map(function(key) { //create items array
           //   return [key, tagsDict[key]]
@@ -151,6 +167,85 @@ module.exports = (app) => {
       console.log(err.message)
     })
   })
+
+
+
+
+
+
+
+
+
+
+  // BEFORE I CHANGED TO TRY TO MAKE IT BETTER
+
+
+
+
+  // 😁 super similar to the above, yo!!!
+  // Index/Read - for all entries w/ same RATING
+  // app.get('/ratings/:rating', (req, res) => {
+  //   Entry.find({ rating: req.params.rating })
+  //     .then(async entries => {
+  //       const ratingHunt = await Rating.find({ ratingNum: req.params.rating }).then(ratings => {
+  //         let allTags = []
+  //         let tagsDict = {}
+  //         // let topTags = []
+
+  //         // for (const rating of ratings) {
+  //         //   for (const tag of rating.tagsUsed) {
+  //         //     allTags.push(tag)
+  //         //     console.log(allTags)
+  //         //     for (const thing of allTags) {
+  //         //       if (thing in tagsDict) {
+  //         //         tagsDict[thing] += 1 //no dot notation :( cuz it's a var
+  //         //       } else {
+  //         //         tagsDict[thing] = 1
+  //         //       }
+  //         //     }
+  //         //   }
+  //         // }
+
+  //         for (const rating of ratings) {
+  //           for (const tag of rating.tagsUsed) {
+  //             allTags.push(Tag)
+  //           }
+  //         }
+
+  //         for (const thing of allTags) {
+  //           if (thing in tagsDict) {
+  //             tagsDict[thing] += 1 //no dot notation b/c 'thing' is a var
+  //           } else {
+  //             tagsDict[thing] = 1
+  //           }
+  //         }
+
+
+
+
+  //         // for (const tag of allTags) {
+  //         //   if (tag in tagsDict) {
+  //         //     tagsDict[tag] += 1
+  //         //   } else {
+  //         //     tagsDict[tag] = 1
+  //         //   }
+  //         // }
+  //         return tagsDict
+  //         // var standIn = Object.keys(tagsDict).map(function(key) { //create items array
+  //         //   return [key, tagsDict[key]]
+  //         // })
+  //         // standIn.sort(function(first, second) { //sort array based on 2nd element
+  //         //   return second[1] - first[1]
+  //         // })
+  //         // return standIn.slice(0, 3) //return only the first 3 items
+  //         // // return topTags
+  //       })
+  //       console.log(ratingHunt)
+  //       res.render('rated-entries', { entries: entries, rating: req.params.rating, topThreeTags: ratingHunt })
+  //     }).catch(err => {
+  //       console.log(err.message)
+  //     })
+  // })
 
 
 
