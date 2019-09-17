@@ -1,0 +1,57 @@
+$bg-color: rgb(246,248,250);
+$std-margin: 15px; /*standard margin.*/
+$std-padding: 20px 15px; /*standard padding.*/
+
+body {
+    background-color: $bg-color;
+}
+
+.card.border {
+    border: 1px solid;
+    width: auto;
+    padding: $std-padding;
+    border-radius: 2rem;
+    /* border-width: thin; */
+    margin-top: $std-margin;
+}
+
+.one-tagged-entry {
+    border: 2px solid;
+    width: auto;
+    padding: $std-padding;
+    border-radius: 2rem;
+    margin-top: $std-margin;
+}
+
+.one-rated-entry {
+    border: 2px solid;
+    width: auto;
+    padding: $std-padding;
+    border-radius: 2rem;
+    margin-top: $std-margin;
+}
+
+.a-btn {
+    margin-top: $std-margin;
+    margin-right: $std-margin;
+}
+
+.b-btn {
+    margin-top: $std-margin;
+}
+
+.c-btn {
+    margin-top: $std-margin;
+}
+
+.z-btn {
+    margin-top: $std-margin;
+}
+
+.one-entry {
+    border: 2px solid;
+    width: auto;
+    padding: 20px 15px;
+    border-radius: 2rem;
+    margin-top: 15px;
+}

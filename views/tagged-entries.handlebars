@@ -7,7 +7,7 @@
     <h2>Average rating for this tag: <b>{{average}}</b></h2>
     <br>
     {{#each entries}}
-    <div class="one-tagged-entry">
+    <div class="tagged-entry">
       <h2>Date: <a href="/entries/{{this._id}}">{{this.title}}</a></h2>
       <p><b>Rating: </b>{{this.rating}}</p>
       <p><b>Tags: </b><i>{{this.tagsString}} </i></p>
@@ -15,13 +15,3 @@
     {{/each}}
   </div>
 </div>
-
-<style>
-  .one-tagged-entry {
-    border: 2px solid;
-    width: auto !important;
-    padding: 20px 15px;
-    border-radius: 2rem;
-    margin-top: 15px;
-  }
-</style>

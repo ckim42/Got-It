@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/got-it"
 mongoose.connect(mongoUri, { useNewUrlParser: true } )
 
+app.use(express.static(__dirname + '/public')) //makes public folder accessible from anywhere
+
 //controllers
 require('./controllers/entries')(app)
 require('./controllers/comments')(app)

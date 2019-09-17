@@ -1,0 +1,54 @@
+body {
+  background-color: #f6f8fa;
+}
+
+.card.border {
+  border: 1px solid;
+  width: auto;
+  padding: 20px 15px;
+  border-radius: 2rem;
+  /* border-width: thin; */
+  margin-top: 15px;
+}
+
+.tagged-entry {
+  border: 2px solid;
+  width: auto;
+  padding: 20px 15px;
+  border-radius: 2rem;
+  margin-top: 15px;
+}
+
+.one-rated-entry {
+  border: 2px solid;
+  width: auto;
+  padding: 20px 15px;
+  border-radius: 2rem;
+  margin-top: 15px;
+}
+
+.a-btn {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.b-btn {
+  margin-top: 15px;
+}
+
+.c-btn {
+  margin-top: 15px;
+}
+
+.z-btn {
+  margin-top: 15px;
+}
+
+.one-entry {
+  border: 2px solid;
+  width: auto;
+  padding: 20px 15px;
+  border-radius: 2rem;
+  margin-top: 15px;
+}
+/*# sourceMappingURL=styles.css.map */
