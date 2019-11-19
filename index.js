@@ -22,6 +22,7 @@ const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/got-it"
 mongoose.connect(mongoUri, { useNewUrlParser: true } )
 
 app.use(express.static(__dirname + '/public')) //makes public folder accessible from anywhere
+//Or: "Hey express, look for static files in the public directory of this app"
 
 //controllers
 require('./controllers/entries')(app)
